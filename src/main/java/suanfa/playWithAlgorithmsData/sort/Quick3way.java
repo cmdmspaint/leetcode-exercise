@@ -1,5 +1,7 @@
 package suanfa.playWithAlgorithmsData.sort;
 
+import hellozepp.base.QuickSort;
+
 /**
  * @author Administrator
  *
@@ -8,6 +10,11 @@ public class Quick3way {
     public static void main(String[] args) {
         int num[] = {3, 1, 5, 4, 123, 55, 33, 123};
         new MergeSort().sort(num, 0, 7);
+        for (int n : num) {
+            System.out.print(n + " ");
+        }
+        System.out.println();
+        new QuickSort().sort(new int[]{3, 1, 5, 4, 123, 55, 33, 123}, 0, 7);
         for (int n : num) {
             System.out.print(n + " ");
         }

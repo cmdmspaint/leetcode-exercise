@@ -22,7 +22,6 @@ package hellozepp.serach;
  */
 public class Solution79 {
     private static boolean[][] visited;
-
     public boolean exist(char[][] board, String word) {
         visited = new boolean[board.length][board[0].length];
 

@@ -8,10 +8,10 @@ import java.util.Stack;
  * <p>
  * 难度1星
  */
-class Solution232 {
+public class Solution232 {
 
-    Stack<Integer> input = new Stack();
-    Stack<Integer> output = new Stack();
+    private Stack<Integer> input = new Stack<>();
+    private Stack<Integer> output = new Stack<>();
 
 
     public void push(int x) {
@@ -27,9 +27,11 @@ class Solution232 {
     // Get the front element.
     public int peek() {
 
-        if (output.isEmpty())
-            while (!input.isEmpty())
+        if (output.isEmpty()) {
+            while (!input.isEmpty()) {
                 output.push(input.pop());
+            }
+        }
         return output.peek();
     }
 

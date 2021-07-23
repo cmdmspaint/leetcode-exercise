@@ -1,7 +1,7 @@
 package suanfa.playWithAlgorithmsData.sort.test;
 
 import suanfa.AlgorUtils;
-import suanfa.playWithAlgorithmsData.sort.QuickSort;
+import suanfa.playWithAlgorithmsData.sort.QuickSortUtil;
 import suanfa.playWithAlgorithmsData.sort.heapsort.SortTestHelper;
 
 import java.util.Random;
@@ -48,16 +48,16 @@ public class Quiz {
         Integer[] arr = SortTestHelper.generateRandomArray(N, 0, 100000);
         new Quiz().sort(arr);
         arr = SortTestHelper.generateRandomArray(N, 0, 100000);
-        QuickSort.sort(arr);
+        QuickSortUtil.sort(arr);
         System.out.println(AlgorUtils.isSorted(arr));
         arr = SortTestHelper.generateRandomArray(12567, 0, 213123);
-        QuickSort.sort(arr);
+        QuickSortUtil.sort(arr);
         System.out.println(AlgorUtils.isSorted(arr));
         arr = SortTestHelper.generateRandomArray(123123, 0, 1341245);
-        QuickSort.sort(arr);
+        QuickSortUtil.sort(arr);
         System.out.println(AlgorUtils.isSorted(arr));
         arr = SortTestHelper.generateRandomArray(3536, 0, 145);
-        QuickSort.sort(arr);
+        QuickSortUtil.sort(arr);
         System.out.println(AlgorUtils.isSorted(arr));
     }
 }

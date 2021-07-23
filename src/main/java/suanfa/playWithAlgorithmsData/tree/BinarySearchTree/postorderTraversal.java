@@ -167,5 +167,7 @@ public class postorderTraversal {//后序 栈的方法倒着写
         System.out.println("preOrderTraversal:" + preOrderTraversal(treeNode));//[6, 3, 7, 9, 8, 10]
         System.out.println("preOrderTraversal1:" + preOrderTraversal1(treeNode));//[6, 3, 7, 9, 8, 10]
         System.out.println("levelOrder:" + levelOrder(treeNode));//[6, 3, 8, 7, 9, 10]
+        System.out.println("递归版本先序：");
+        new BST().preOrder(treeNode);
     }
 }

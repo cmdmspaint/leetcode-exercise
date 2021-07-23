@@ -32,12 +32,15 @@ public class 环形入口节点 {
         d.next = e;
         e.next = f;
         f.next = g;
-//        f.next = c;
+        f.next = c;
 
         Long begintime = System.nanoTime();
-        ListNode result = EntryNodeOfLoop(a);
+        ListNode result = entryNodeOfLoop(a);
         Long endtime = System.nanoTime();
         if (result != null) {
+            // 结果 在环中相遇的节点为：5
+            //环中节点的数目为：4个
+            //链表的入环节点为：3,运行时间：1990456ns
             System.out.println("链表的入环节点为：" + result.val + ",运行时间：" + (endtime - begintime) + "ns");
         } else {
             System.out.println("该链表中没有环");
@@ -45,33 +48,35 @@ public class 环形入口节点 {
 
     }
 
+    /**
+     * leetcode 142 环形链表II
+     * @param pHead
+     * @return
+     */
     //两个指针相遇的节点
-    public static ListNode MeetingNode(ListNode pHead) {
-        ListNode p = pHead;
-        ListNode q = pHead;
-        ListNode meet = null;
-        while (p != null && q != null) {
-            p = p.next;
-            if (q.next == null) {
+    public static ListNode meetingNode(ListNode pHead) {
+        ListNode slow = pHead;
+        ListNode fast = pHead;
+        while (slow != null && fast != null) {
+            //防止空指针 条件是链表值不重复, 重复的话应该比较节点对象是否相等
+            if (fast.next == null) {
                 //快指针结束
-                return meet;
+                return null;
             }
-            q = q.next.next; //防止空指针 条件是链表值不重复,重复的话应该比较节点对象是否相等
-            if (p != null && q != null && p.val == q.val) {
-                meet = p;
-                return meet;
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow != null && fast != null && slow.val == fast.val) {
+                return slow;
             }
         }
-        return meet;
-
+        return null;
     }
 
     //环的入口节点
-    public static ListNode EntryNodeOfLoop(ListNode pHead) {
-        ListNode meetingNode = MeetingNode(pHead);
-        ListNode loopnode = null;
+    public static ListNode entryNodeOfLoop(ListNode pHead) {
+        ListNode meetingNode = meetingNode(pHead);
         if (meetingNode == null) {
-            return loopnode;
+            return null;
         }
         System.out.println("在环中相遇的节点为：" + meetingNode.val);
         ListNode pNode1 = pHead;
@@ -81,11 +86,10 @@ public class 环形入口节点 {
         ListNode temp = meetingNode;
         while (temp.next != meetingNode) {
             temp = temp.next;
-            nodeInLoop++;
+            ++nodeInLoop;
         }
         System.out.println("环中节点的数目为：" + nodeInLoop + "个");
         //先移动pNode1,次数为环中节点的数目(range),指向环数量的下一个节点,即入口
-        pNode1 = pHead;
         for (int i = 0; i < nodeInLoop; i++) {
             pNode1 = pNode1.next;
         }

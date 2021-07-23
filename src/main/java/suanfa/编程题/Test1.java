@@ -1,7 +1,5 @@
 package suanfa.编程题;
 
-import java.util.Arrays;
-
 /**
  * @Author: zhanglin
  * @Date: 2018/5/16
@@ -11,7 +9,7 @@ public class Test1 {
     public static void main(String[] args) {
         int[] ints = {5, 6, 7, 8, 9, 4, 3, 2, 1};
         int i = 0;
-        System.out.println((char)65);
+        System.out.println((char) 65);
     }
 
     public static int call(int[] nums, int target) {

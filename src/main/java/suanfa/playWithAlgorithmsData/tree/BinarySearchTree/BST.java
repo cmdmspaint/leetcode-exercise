@@ -1,5 +1,7 @@
 package suanfa.playWithAlgorithmsData.tree.BinarySearchTree;
 
+import suanfa.playWithAlgorithmsData.tree.TreeNode;
+
 import java.util.LinkedList;
 
 // 二分搜索树
@@ -47,7 +49,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     public void insert(Key key, Value value) {
         root = insert(root, key, value);
     }
-   //********************
+    //********************
     //* 二分搜索树的辅助函数
     //********************
 
@@ -60,15 +62,18 @@ public class BST<Key extends Comparable<Key>, Value> {
             return new Node(key, value);
         }
 
-        if (key.compareTo(node.key) == 0)
+        if (key.compareTo(node.key) == 0) {
             node.value = value;
-        else if (key.compareTo(node.key) < 0)
+        } else if (key.compareTo(node.key) < 0) {
             node.left = insert(node.left, key, value);
-        else    // key > node->key
+        } else    // key > node->key
+        {
             node.right = insert(node.right, key, value);
+        }
 
         return node;
     }
+
     // 查看二分搜索树中是否存在键key
     public boolean contain(Key key) {
         return contain(root, key);
@@ -106,10 +111,12 @@ public class BST<Key extends Comparable<Key>, Value> {
 
             System.out.println(node.key);
 
-            if (node.left != null)
+            if (node.left != null) {
                 q.add(node.left);
-            if (node.right != null)
+            }
+            if (node.right != null) {
                 q.add(node.right);
+            }
         }
     }
 
@@ -160,6 +167,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         if (root != null)
             root = removeMax(root);
     }
+
     // 删除掉以node为根的二分搜索树中的最小节点
     // 返回删除节点后新的二分搜索树的根
     private Node removeMin(Node node) {
@@ -239,7 +247,8 @@ public class BST<Key extends Comparable<Key>, Value> {
             return successor;
         }
     }
-     // 查看以node为根的二分搜索树中是否包含键值为key的节点, 使用递归算法
+
+    // 查看以node为根的二分搜索树中是否包含键值为key的节点, 使用递归算法
     private boolean contain(Node node, Key key) {
 
         if (node == null)
@@ -269,7 +278,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     // 对以node为根的二叉搜索树进行前序遍历, 递归算法
-    private void preOrder(Node node) {
+    public void preOrder(Node node) {
 
         if (node != null) {
             System.out.println(node.key);
@@ -298,6 +307,14 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
+    public void preOrder(TreeNode node) {
+
+        if (node != null) {
+            System.out.println(node.val);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
 
     // 测试二分搜索树
     public static void main(String[] args) {
@@ -345,7 +362,6 @@ public class BST<Key extends Comparable<Key>, Value> {
         System.out.println(bst.size());
         bst.removeMax();
         bst.removeMax();
-
 
 
     }

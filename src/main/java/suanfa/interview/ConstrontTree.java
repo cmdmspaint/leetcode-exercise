@@ -42,19 +42,13 @@ public class ConstrontTree {
      */
     //01递归生成树
     private static BinaryTree startBuildTree(int[] preSort, int[] inSort) throws Exception {
-        //异常判断
         if (preSort == null || inSort == null) {
             return null;
         }
-        if (preSort.length != inSort.length) {
-            throw new Exception("不满足条件的非法输入！");
-        }
-
         BinaryTree root = null;
         for (int i = 0; i < inSort.length; i++) {
             if (inSort[i] == preSort[0]) {
                 root = new BinaryTree(preSort[0]);
-                System.out.println(preSort[0]);
 
                 root.leftNode = startBuildTree(
                         Arrays.copyOfRange(preSort, 1, i + 1),

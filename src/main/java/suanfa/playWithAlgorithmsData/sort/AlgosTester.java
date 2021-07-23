@@ -27,7 +27,7 @@ public class AlgosTester {
 //            startTime = System.currentTimeMillis();
 //            IndexSort.sort(arr);
 //            Quick3way.sort(arr, 0, arr.length - 1);
-//            QuickSort.sort(arr,0,arr.length-1);
+//            QuickSortUtil.sort(arr,0,arr.length-1);
 //            BubbleSort.sort(arr);
 //            BubbleSort.bubblesort(arr);
             long endTime = System.nanoTime();

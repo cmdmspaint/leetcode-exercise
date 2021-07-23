@@ -2,8 +2,6 @@ package hellozepp.linklist;
 
 import hellozepp.ListNode;
 
-import java.util.Stack;
-
 /**
  * 给定一个排序的 链表
  * 删除其重复数的节点
@@ -19,10 +17,12 @@ public class Solution83 {
         ListNode curr = head;
 
         while (curr != null && curr.next != null) {
-            if (curr.val == curr.next.val) curr.next = curr.next.next;
-            else curr = curr.next;
+            if (curr.val == curr.next.val) {
+                curr.next = curr.next.next;
+            } else {
+                curr = curr.next;
+            }
         }
-         Stack stat =new Stack();
         return head;
     }
 

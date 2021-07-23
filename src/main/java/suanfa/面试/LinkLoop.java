@@ -14,7 +14,7 @@ public class LinkLoop {
     }
 
     public static boolean hasLoop(Node n) {
-        if (n==null){
+        if (n == null) {
             return false;
         }
         //定义两个指针tmp1,tmp2
@@ -63,6 +63,6 @@ public class LinkLoop {
         System.out.println(hasLoop(n1));
         System.out.println(hasLoop2(n1));
 
-        System.out.println(n2.toString()+" "+n1.toString());
+        System.out.println(n2.toString() + " " + n1.toString());
     }
 }

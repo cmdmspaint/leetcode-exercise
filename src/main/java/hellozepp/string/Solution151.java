@@ -16,13 +16,15 @@ public class Solution151 {
     public String reverseWords(String s) {
         String[] strs = s.split("\\s+");
 
-        String rst="";
-        if(strs.length==0)return rst;
-
-        for (int i = strs.length-1; i >=0 ; i--) {
-            rst+= strs[i]+" ";
+        String rst = "";
+        if (strs.length == 0) {
+            return rst;
         }
-        return  rst.trim();
+
+        for (int i = strs.length - 1; i >= 0; i--) {
+            rst += strs[i] + " ";
+        }
+        return rst.trim();
     }
 
 }

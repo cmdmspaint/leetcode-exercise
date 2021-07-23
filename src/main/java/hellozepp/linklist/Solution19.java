@@ -37,37 +37,18 @@ public class Solution19 {
         dummy.next = head;
         ListNode slow = dummy, fast = head;
         //先移动 fast到 length - n 的位置
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i < n; i++) {
             fast = fast.next;
         }
         //再移动fast到尾部 那么slow现在的位置就是 n
-        while (fast != null) {
+        while (fast.next != null) {
             slow = slow.next;
             fast = fast.next;
         }
         //delete
         slow.next = slow.next.next;
 
-        return head;
-    }
-
-    // 重写
-    public ListNode solution(ListNode head, int n) {
-        if (head.next == null) {
-            return null;
-        }
-        ListNode dummy = new ListNode(-1);
-        dummy.next = head;
-        ListNode cur = dummy, tmp = head;
-        for (int i = 1; i <= n; i++) {
-            tmp = tmp.next;
-        }
-        while (tmp != null) {
-            cur = cur.next;
-            tmp = tmp.next;
-        }
-        cur.next = cur.next.next;
-        return head;
+        return dummy.next;
     }
 
     public static void main(String[] args) {

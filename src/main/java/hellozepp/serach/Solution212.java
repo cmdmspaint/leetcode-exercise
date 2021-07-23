@@ -26,7 +26,6 @@ import java.util.Set;
  *
  * 输入：board = [["a","b"],["c","d"]], words = ["abcb"]
  * 输出：[]
- *  
  *
  * 提示：
  *
@@ -55,7 +54,7 @@ public class Solution212 {
         return new ArrayList<>(res);
     }
 
-    private void find(char[][] board, int i, int j, Set<String> res, boolean[][] visited, TreeNode node) {
+    private void find(char[][] board, int i, int j, Set<String> res, boolean[][] visited, TrieTreeNode node) {
         if (i < 0 || i >= board.length || j < 0 || j >= board[i].length || visited[i][j]) {
             return;
         }
@@ -64,7 +63,7 @@ public class Solution212 {
             return;
         }
         if (node.isEnd) {
-            res.add(node.value);
+            res.add(node.value); // 注意，访问完某个单词后需要继续向下找其他单词的可能
         }
         visited[i][j] = true;
         find(board, i - 1, j, res, visited, node);
@@ -75,17 +74,17 @@ public class Solution212 {
     }
 
     public class WordTrie {
-        TreeNode root;
+        TrieTreeNode root;
 
         WordTrie() {
-            root = new TreeNode();
+            root = new TrieTreeNode();
         }
 
         public void insert(String word) {
-            TreeNode cur = root;
+            TrieTreeNode cur = root;
             for (int i = 0; i < word.length(); i++) {
                 if (cur.child[word.charAt(i) - 'a'] == null) {
-                    cur.child[word.charAt(i) - 'a'] = new TreeNode();
+                    cur.child[word.charAt(i) - 'a'] = new TrieTreeNode();
                 }
                 cur = cur.child[word.charAt(i) - 'a'];
             }
@@ -94,13 +93,13 @@ public class Solution212 {
         }
     }
 
-    public class TreeNode {
+    public class TrieTreeNode {
         String value;
-        TreeNode[] child;
+        TrieTreeNode[] child;
         boolean isEnd;
 
-        public TreeNode() {
-            this.child = new TreeNode[26];
+        public TrieTreeNode() {
+            this.child = new TrieTreeNode[26];
             this.isEnd = false;
         }
     }

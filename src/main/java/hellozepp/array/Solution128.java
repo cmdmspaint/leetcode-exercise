@@ -33,5 +33,6 @@ public class Solution128 {
 
     public static void main(String[] args) {
         System.out.println(new Solution128().longestConsecutive(new int[]{100, 4, 200, 1, 3, 2, 2}));
+        System.out.println(new Solution128().longestConsecutive(new int[]{101, 103, 102, 100, 3, 2, 1, 200}));
     }
 }

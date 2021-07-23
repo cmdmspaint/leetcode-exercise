@@ -22,7 +22,7 @@ public class Main {
         Integer[] arr7 = Arrays.copyOf(arr1, arr1.length);
 
         SortTestHelper.testSort("bobo.algo.MergeSort", arr1);
-        SortTestHelper.testSort("bobo.algo.QuickSort", arr2);
+        SortTestHelper.testSort("bobo.algo.QuickSortUtil", arr2);
         SortTestHelper.testSort("bobo.algo.QuickSort2Ways", arr3);
         SortTestHelper.testSort("bobo.algo.QuickSort3Ways", arr4);
         SortTestHelper.testSort("bobo.algo.HeapSort1", arr5);
@@ -47,7 +47,7 @@ public class Main {
         arr7 = Arrays.copyOf(arr1, arr1.length);
 
         SortTestHelper.testSort("bobo.algo.MergeSort", arr1);
-        SortTestHelper.testSort("bobo.algo.QuickSort", arr2);
+        SortTestHelper.testSort("bobo.algo.QuickSortUtil", arr2);
         SortTestHelper.testSort("bobo.algo.QuickSort2Ways", arr3);
         SortTestHelper.testSort("bobo.algo.QuickSort3Ways", arr4);
         SortTestHelper.testSort("bobo.algo.HeapSort1", arr5);
@@ -70,7 +70,7 @@ public class Main {
 
         SortTestHelper.testSort("bobo.algo.MergeSort", arr1);
         // 这种情况下, 普通的QuickSort退化为O(n^2)的算法, 不做测试
-        //SortTestHelper.testSort("bobo.algo.QuickSort", arr2);
+        //SortTestHelper.testSort("bobo.algo.QuickSortUtil", arr2);
         SortTestHelper.testSort("bobo.algo.QuickSort2Ways", arr3);
         SortTestHelper.testSort("bobo.algo.QuickSort3Ways", arr4);
         SortTestHelper.testSort("bobo.algo.HeapSort1", arr5);

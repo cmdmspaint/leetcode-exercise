@@ -24,24 +24,32 @@ package hellozepp.base;
  */
 public class QuickSort {
 
-    public void quicksort(int n[], int left, int right) {
+    public void sort(int n[], int left, int right) {
         if (left < right) {
             int dp = partition(n, left, right);
-            quicksort(n, left, dp - 1);
-            quicksort(n, dp + 1, right);
+            sort(n, left, dp - 1);
+            sort(n, dp + 1, right);
         }
     }
 
     public int partition(int n[], int left, int right) {
-        int mid = n[left];
+        int tmp = n[left];
         while (left < right) {
-            while (left < right && n[right] >= mid) right--;
-            if (left < right) n[left++] = n[right];
+            while (left < right && n[right] >= tmp) {
+                right--;
+            }
+            if (left < right) {
+                n[left++] = n[right];
+            }
 
-            while (left < right && n[left] <= mid) left++;
-            if (left < right) n[right--] = n[left];
+            while (left < right && n[left] <= tmp) {
+                left++;
+            }
+            if (left < right) {
+                n[right--] = n[left];
+            }
         }
-        n[left] = mid;
+        n[left] = tmp;
         return left;
     }
 }

@@ -8,8 +8,9 @@ import java.util.Stack;
  * @Author: zhanglin
  * @Date: 2019/7/4
  * @Time: 1:47 PM
+ * 同Solution946
  */
-public class IsStackOrder {
+public class IsStackOrder946 {
     //判断一个数组是否是另一个栈的出栈顺序
 
     @Test
@@ -29,17 +30,14 @@ public class IsStackOrder {
 
     public boolean testOrder(int[] num, Stack<Integer> s1, Stack<Integer> s2) {
         int length = num.length;
-        for (int i = 0; i < length; i++) {
-            s1.push(num[i]);
+        for (int aNum : num) {
+            s1.push(aNum);
             while (!s1.isEmpty() && s2.lastElement().intValue() == s1.lastElement().intValue()) {
                 s1.pop();
                 s2.pop();
             }
         }
-        if (!s1.isEmpty()) {
-            return false;
-        }
-        return true;
+        return s1.isEmpty();
     }
 
     //    给出两个数组，第一个为入栈顺序，第二个可否为出栈顺序

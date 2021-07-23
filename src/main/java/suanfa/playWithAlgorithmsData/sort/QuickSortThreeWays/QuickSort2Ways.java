@@ -61,7 +61,7 @@ public class QuickSort2Ways {
         arr[j] = t;
     }
 
-    // 测试 QuickSort
+    // 测试 QuickSortUtil
     public static void main(String[] args) { //ArrayIndexOutOfBoundsException: -1
         Integer arr1[] = {1, 2, 3, 4, 5, 4, 4, 5, 6, 7};
         long startTime = System.nanoTime();

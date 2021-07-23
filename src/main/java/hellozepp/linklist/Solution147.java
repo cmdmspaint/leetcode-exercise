@@ -18,8 +18,9 @@ import hellozepp.ListNode;
  * 每次迭代中，插入排序只从输入数据中移除一个待排序的元素，找到它在序列中适当的位置，并将其插入。
  * 重复直到所有输入数据插入完为止。
  *  
- * 解法：维护dummy保存插入进来的值，内循环每次选一个dummy的位置来插入cur的值
- * 插入过程：先cur->pre.next指向比他大的数，再讲pre指向cur，然后pre回到dumm，cur下移
+ * 解法：三个指针pre,cur,next,pre用于遍历dummy，cur代表当前要插入的数，next临时存储下一个，
+ * 维护dummy保存插入进来的值，内循环每次从dummy链表选一个不大于cur的位置来插入cur的值
+ * 找到后的插入过程：先cur.next->pre.next指向找到的比他大的数（都小指向空），再讲pre.next指向cur，然后pre回到dummy，cur下移next
  * 示例 1：
  *
  * 输入: 4->2->1->3
@@ -74,7 +75,7 @@ public class Solution147 {
 
         while (cur != null) {
             next = cur.next;
-            while (pre.next != null && cur.val == pre.next.val) {
+            while (pre.next != null && cur.val > pre.next.val) {
                 pre = pre.next;
             }
             cur.next = pre.next;

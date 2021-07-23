@@ -51,6 +51,11 @@ public class Solution300 {
         return end;
     }
 
+    /**
+     * 动态规划解法，dp存储最大递增序列个数，每次判断dp中的个数加1是否是最大
+     * @param nums
+     * @return
+     */
     //--------------------------------
     public int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length == 0) {

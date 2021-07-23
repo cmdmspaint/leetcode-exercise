@@ -14,6 +14,7 @@ package hellozepp.serach;
  * 难度3星
  */
 public class Solution33 {
+
     public int search(int[] nums, int target) {
 
         int start = 0;
@@ -24,7 +25,7 @@ public class Solution33 {
                 return mid;
 
             if (nums[start] <= nums[mid]) {
-                if (target < nums[mid] && target >= nums[start])
+                if (target < nums[mid] && target >= nums[start]) // 注意，这里满足条件会砍掉一组旋转的数组
                     end = mid - 1;
                 else
                     start = mid + 1;

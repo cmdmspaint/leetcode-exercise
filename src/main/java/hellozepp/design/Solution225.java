@@ -13,9 +13,9 @@ import java.util.Queue;
  * top() – 获取栈顶元素
  * empty() – 返回栈是否为空
  */
-class Solution225 {
+public class Solution225 {
 
-    Queue<Integer> queue = new LinkedList<>();
+    private Queue<Integer> queue = new LinkedList<>();
 
     private int top;
 
@@ -32,7 +32,9 @@ class Solution225 {
 
             int i = 1;
             for (int n : queue) {
-                if (i++ == queue.size()) top = n;
+                if (i++ == queue.size()) {
+                    top = n;
+                }
             }
         }
     }

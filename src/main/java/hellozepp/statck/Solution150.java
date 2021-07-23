@@ -16,7 +16,7 @@ public class Solution150 {
 
         for (String st : tokens) {
 
-            if (st.equals("+")) {
+            if ("+".equals(st)) {
                 int n1 = stack.pop();
                 int n2 = stack.pop();
                 stack.push(n1 + n2);
@@ -39,11 +39,8 @@ public class Solution150 {
         }
 
         if (!stack.isEmpty()) {
-            for (int n : stack) {
-                rst += n;
-            }
+            rst += stack.pop();
         }
-
         return rst;
 
     }

@@ -23,29 +23,6 @@ import java.util.LinkedList;
  * 难度3星
  */
 public class Solution279 {
-    /**
-     * 超时了
-     * 使用图的最短路径求解，每次num - i * i 当前数字-完全平方数，如4（4，1+1+1+1）或 5（1+4，1+1+1+1+1）
-     * @param n
-     * @return
-     */
-    public int numSquares1(int n) {
-        assert (n > 0);
-        Deque<Pair<Integer, Integer>> q = new LinkedList<>();
-        q.offer(new Pair<>(n, 0));
-        while (!q.isEmpty()) {
-            Integer num = q.peek().getKey();
-            Integer step = q.peek().getValue();
-            q.poll();
-            if (num == 0) {
-                return step;
-            }
-            for (int i = 1; num - i * i >= 0; i++) { // 12 9 3
-                q.offer(new Pair<>(num - i * i, step + 1));
-            }
-        }
-        throw new IllegalArgumentException("no solution");
-    }
 
     /**
      * 如果一个数x可以表示为一个任意数a加上一个平方数b∗b，
@@ -69,21 +46,43 @@ public class Solution279 {
      * @param n
      * @return
      */
-    public int numSquares(int n) {
+    public int numSquares1(int n) {
         int[] dp = new int[n + 1];
-        Arrays.fill(dp, Integer.MAX_VALUE);
+        //Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
         for (int i = 1; i < dp.length; i++) {
             int min = Integer.MAX_VALUE;
-            int j = 1;
-            while (i - j * j >= 0) {
+            for (int j = 1; i - j * j >= 0; j++) {
                 min = Math.min(dp[i - j * j] + 1, min);
-                ++j;
             }
             dp[i] = min;
         }
 
         return dp[n];
+    }
+
+    /**
+     * 超时了
+     * 使用图的最短路径求解，每次num - i * i 当前数字-完全平方数，如4（4，1+1+1+1）或 5（1+4，1+1+1+1+1）
+     * @param n
+     * @return
+     */
+    public int numSquares(int n) {
+        assert (n > 0);
+        Deque<Pair<Integer, Integer>> q = new LinkedList<>();
+        q.offer(new Pair<>(n, 0));
+        while (!q.isEmpty()) {
+            Integer num = q.peek().getKey();
+            Integer step = q.peek().getValue();
+            q.poll();
+            if (num == 0) {
+                return step;
+            }
+            for (int i = 1; num - i * i >= 0; i++) { // 12 9 3
+                q.offer(new Pair<>(num - i * i, step + 1));
+            }
+        }
+        throw new IllegalArgumentException("no solution");
     }
 
     public static void main(String[] args) {

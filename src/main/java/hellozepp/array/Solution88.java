@@ -18,20 +18,18 @@ package hellozepp.array;
  */
 public class Solution88 {
 
-    public void merge(int[] num1, int m, int[] num2, int n) {
-
-        int length = m + n;
-
-
-        while (n>0){
-
-            if(m==0|| num1[m-1]<num2[n-1])
-                num1[--length]= num2[--n];
-            else  num1[--length]=num1[--m];
-
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1, j = n - 1, k = m + n - 1;
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k--] = nums1[i--];
+            } else {
+                nums1[k--] = nums2[j--];
+            }
         }
-
-
-
+        // j >= 0说明i<0,需要对j进行放置，如果只有j>=0本身就是数组有序不需要改动
+        while (j >= 0) {
+            nums1[k--] = nums2[j--];
+        }
     }
 }

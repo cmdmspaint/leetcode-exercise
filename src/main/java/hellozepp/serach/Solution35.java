@@ -14,6 +14,27 @@ package hellozepp.serach;
  */
 public class Solution35 {
 
+    /**
+     * 二分
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int searchInsert2(int[] nums, int target) {
+        int l = 0, r = nums.length - 1;
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] > target) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l; // 注意，r最终会减1
+    }
+
     public int searchInsert(int[] nums, int target) {
 
         for (int i = 0; i < nums.length; i++) {
@@ -22,24 +43,6 @@ public class Solution35 {
             }
         }
         return nums.length;
-    }
-
-
-    /**
-     * 二分
-     * @param nums
-     * @param target
-     * @return
-     */
-    public int searchInsert2(int[] nums, int target) {
-        int low = 0, high = nums.length - 1;
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            if (nums[mid] == target) return mid;
-            else if (nums[mid] > target) high = mid - 1;
-            else low = mid + 1;
-        }
-        return low;
     }
 
 }

@@ -8,6 +8,20 @@ package hellozepp.math;
  */
 public class Solution69 {
 
+    public static int solution(int n) {
+        int low = 0, high = n;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (mid * mid < n) {
+                low = mid + 1;
+            } else if (mid * mid > n) {
+                high = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+        return high;  //注意，low <= high不成立是，high已经越界变成low
+    }
 
     /**
      * 二分法

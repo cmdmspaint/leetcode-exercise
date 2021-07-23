@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * {1, 2, 3}
- *全排列
+ * 全排列
  * [1, 2, 3]
  * [1, 3, 2]
  * [2, 1, 3]
@@ -18,15 +18,46 @@ public class a46 {
 
 
     List<List<Integer>> res;
-    boolean[] isUsed;
+    private boolean[] isUsed;
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
         List<List<Integer>> res = (new a46()).permute(nums);
-        for (List<Integer> list : res)
+        for (List<Integer> list : res) {
             System.out.println(list);
+        }
     }
 
+    /**
+     * dfs 方式最优解
+     *
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> permute(int... nums) {
+
+        List<List<Integer>> list = new ArrayList<>();
+        dfs(list, new ArrayList<>(), nums, 0);
+        return list;
+    }
+
+    private void dfs(List<List<Integer>> list, List<Integer> subList, int[] nums, int start) {
+
+        if (start == nums.length) {
+            list.add(new ArrayList<>(subList));
+            System.out.println("sub list add to list:" + subList.toString());
+            return;
+        }
+        for (int i = 0; i <= start; i++) {
+            subList.add(i, nums[start]); //相当于队列
+            System.out.println("add to subList[" + i + "]:" + nums[start] + ",start:" + start + ",current subList:" + subList);
+            dfs(list, subList, nums, start + 1);
+            subList.remove(i);
+        }
+
+    }
+
+    //----------------------------------------
     private List<List<Integer>> solution(int[] nums) {
         res = new ArrayList<>();
         if (nums == null || nums.length == 0) {
@@ -55,26 +86,5 @@ public class a46 {
         }
     }
 
-    //标准写法 DFS
-    public static List<List<Integer>> permute(int[] num) {
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        helper(res, list, num);
-        return res;
-    }
 
-    private static void helper(List<List<Integer>> res, List<Integer> list, int[] num) {
-        if (list.size() == num.length) {
-            res.add(new ArrayList<>(list));
-            return;
-        }
-        for (int i = 0; i < num.length; i++) {
-            if (list.contains(num[i])) {
-                continue;
-            }
-            list.add(num[i]);
-            helper(res, list, num);
-            list.remove(list.size() - 1);
-        }
-    }
 }

@@ -23,6 +23,7 @@ public class Solution31 {
     /**
      * example:
      *  1234
+     *  。。。
      *  4123
      *  4132
      *  4213
@@ -56,7 +57,11 @@ public class Solution31 {
      * 得到最终的结果：6，3，7，1，4，8，9
      *
      * 6，3，4，9，1，7，8 - 6349187
-     * 6, 3, 4, 9, 1, 8, 7 - 6349781 - 6349718
+     * 6, 3, 4, 9, 1, 8, 7 - 6349781（中间过程） - 6349718
+     * 描述：
+     * 先倒着找到一个前后关系是顺序的AB，把顺序位A和倒着找第一个比顺序位大的数交换，然后翻转顺序位B后面的几个数
+     * 倒着找发现都是逆序，整体翻转
+     * 1342 1432 1423
      *
      * @param nums
      */
@@ -80,13 +85,13 @@ public class Solution31 {
 
     }
 
-    void swap(int[] a, int i, int j) {
+    private void swap(int[] a, int i, int j) {
         int t = a[i];
         a[i] = a[j];
         a[j] = t;
     }
 
-    void reverse(int[] a, int i, int j) {
+    private void reverse(int[] a, int i, int j) {
         for (; i < j; i++, j--) {
             swap(a, i, j);
         }
@@ -94,6 +99,9 @@ public class Solution31 {
 
     public static void main(String[] args) {
         int arr[] = new int[]{6, 3, 4, 9, 1, 8, 7};
+//        new Solution31().nextPermutation(arr);
+        System.out.println(JSON.toJSONString(arr));
+        arr = new int[]{1,2,3};
         new Solution31().nextPermutation(arr);
         System.out.println(JSON.toJSONString(arr));
     }

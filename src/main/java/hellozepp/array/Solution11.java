@@ -19,10 +19,11 @@ public class Solution11 {
 
         while (left < right) { //n>=2
             maxArea = Math.max(maxArea, Math.min(height[left], height[right]) * (right - left));//最小边*宽度
-            if (height[left] < height[right])
+            if (height[left] < height[right]) {
                 left++;
-            else
+            } else {
                 right--;
+            }
         }
 
         return maxArea;

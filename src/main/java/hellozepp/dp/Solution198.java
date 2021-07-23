@@ -17,7 +17,7 @@ package hellozepp.dp;
  */
 public class Solution198 {
     //    动态方程：
-    //dp[i] = num[i] + dp[i-2] > dp[i-1] ? num[i] + dp[i-2] : dp[i - 1]
+    //dp[i] =max(num[i] + dp[i-2], dp[i - 1])
     public int rob1(int[] num) {
         int[] max = new int[num.length];
         if (num.length == 0) {

@@ -15,7 +15,7 @@ import hellozepp.ListNode;
  *
  * 给定这个链表：1->2->3->4->5
  *
- * 当 k = 2 时，应当返回: 2->1->4->3->5
+ * 当 k = 2 时，应当返回: 2->1->4->3->5  // 之前的头变成尾，头的next指向第二组的尾
  *
  * 当 k = 3 时，应当返回: 3->2->1->4->5
  *
@@ -29,8 +29,38 @@ import hellozepp.ListNode;
  */
 public class Solution25 {
 
+    /**
+     * @param head a ListNode
+     * @param k an integer
+     * @return a ListNode
+     */
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (k <= 1 || head == null || head.next == null) {
+            return head;
+        }
+        int count = k;
+        ListNode cur = head;
+        ListNode prev = null;
+        ListNode next = null;
+        int size = size(head);
+        if (size < count) {
+            return head;
+        }
+        while (count > 0) {
+            count--;
+            next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        // 此时head为该组的尾部（翻转前是头部）
+        head.next = reverseKGroup(next, k);
+        // prev既该组头部
+        return prev;
+    }
+
     public ListNode reverseKGroup1(ListNode head, int k) {
-        if (k == 1 || head == null || head.next == null) {
+        if (k <= 1 || head == null || head.next == null) {
             return head;
         }
         int len = 0;
@@ -46,14 +76,14 @@ public class Solution25 {
             return head;
         }
         ListNode cur = head;
-        ListNode tail = head;
+        ListNode pre = head;
         for (int i = 0; i < len; i++) {
             //newlist表示分离出来的链表
             ListNode newlist = null;
             //newhead表示分离出来链表的头
             ListNode newhead = cur;
             int count = k;
-            //反转分离出来的链表
+            //反转分离出来的链表，每次让newlist指向尾作为链表头
             while (count > 0) {
                 tmp = cur;
                 cur = cur.next;
@@ -66,56 +96,19 @@ public class Solution25 {
             if (i == 0) {
                 head = newlist;
             } else {
-                tail.next = newlist;
-                tail = newhead;
+                // 前面一组的尾（翻转前是头）指向后面一组的头（翻转前是尾），pre切换到下一组的尾（翻转前是头）
+                pre.next = newlist;
+                pre = newhead;
             }
         }
-        //链接链表剩余的部分
+        //链接链表剩余的部分，cur为最后一组的头
         while (cur != null) {
-            tail.next = cur;
-            tail = tail.next;
+            pre.next = cur;
+            pre = pre.next;
             cur = cur.next;
         }
         //返回头节点
         return head;
-    }
-
-    /**
-     * @param head a ListNode
-     * @param k an integer
-     * @return a ListNode
-     */
-    public ListNode reverseKGroup(ListNode head, int k) {
-        if (k == 1 || head == null || head.next == null) {
-            return head;
-        }
-        int kk = k;
-        ListNode newHead = null;
-        ListNode p = head;
-        ListNode prev = null;
-        ListNode pNext = null;
-        int size = size(head);
-        if (size < k) {
-            return head;
-        }
-        while (k >= 1) {
-            k--;
-            pNext = p.next;
-            if (k == 0) {
-                newHead = p;
-            }
-            p.next = prev;
-            prev = p;
-            p = pNext;
-        }
-        ListNode lastNode = newHead;
-        while (lastNode.next != null) {
-            lastNode = lastNode.next;
-        }
-        ListNode nextHead = reverseKGroup(pNext, kk);
-        lastNode.next = nextHead;
-        return newHead;
-
     }
 
     public int size(ListNode head) {
@@ -128,11 +121,6 @@ public class Solution25 {
     }
 
     public static void main(String[] args) {
-        ListNode test = null;
-        ListNode test1 = test;
-        test = new ListNode(1);
-        System.out.println(test1);
-
         ListNode a = new ListNode(1);
         ListNode b = new ListNode(2);
         ListNode c = new ListNode(3);
@@ -142,6 +130,6 @@ public class Solution25 {
         b.next = c;
         c.next = d;
         d.next = e;
-        System.out.println(JSON.toJSONString(new Solution25().reverseKGroup1(a, 3)));
+        System.out.println(JSON.toJSONString(new Solution25().reverseKGroup(a, 3)));
     }
 }

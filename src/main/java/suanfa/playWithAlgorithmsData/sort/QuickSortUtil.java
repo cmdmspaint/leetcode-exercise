@@ -9,23 +9,23 @@ import suanfa.AlgorUtils;
  *
  * 只看这个解法即可
  */
-public class QuickSort {
+public class QuickSortUtil {
     public static void main(String[] args) {
         Integer arr1[] = {1, 2, 3, 4, 5, 4, 4, 5, 6, 7, 101};
         long startTime = System.nanoTime();
-        QuickSort.sort(arr1);
+        QuickSortUtil.sort(arr1);
         long endTime = System.nanoTime();
         System.out.println(AlgorUtils.isSorted(arr1));
         System.out.println((endTime - startTime) / Math.pow(10, 9));
 
         startTime = System.nanoTime();
-        QuickSort.sort1(arr1);
+        QuickSortUtil.sort1(arr1);
         endTime = System.nanoTime();
         System.out.println(AlgorUtils.isSorted(arr1));
         System.out.println((endTime - startTime) / Math.pow(10, 9));
 
         arr1 = new Integer[]{3, 3, 3, 3, 3};
-        QuickSort.sort(arr1);
+        QuickSortUtil.sort(arr1);
     }
 
     public static void sort(Integer[] arr) {

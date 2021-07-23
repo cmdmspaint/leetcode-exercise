@@ -4,6 +4,7 @@ import hellozepp.ListNode;
 
 /**
  * 判断是否为循环 链表
+ * 链表求环
  * <p>
  * 难度1星
  */
@@ -21,15 +22,19 @@ public class Solution141 {
      */
     public boolean hasCycle(ListNode head) {
 
-        if(head==null)return false;
+        if (head == null) {
+            return false;
+        }
 
-        ListNode slow =head;
-        ListNode fast =head;
+        ListNode slow = head;
+        ListNode fast = head;
 
-        while (fast.next!=null&&fast.next.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-            if(slow==fast)return true;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
         }
 
         return false;

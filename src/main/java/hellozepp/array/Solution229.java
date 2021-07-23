@@ -56,8 +56,7 @@ public class Solution229 {
         for (int num : nums) {
             if (num1 == num) {
                 c1++;
-            }
-            if (num2 == num) {
+            } else if (num2 == num) {
                 c2++;
             }
         }

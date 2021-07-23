@@ -5,6 +5,7 @@ import suanfa.playWithAlgorithmInterview.linkedlist.MyLinkedList;
 
 /**
  * 反转单向链表
+ * 链表翻转
  *
  * 难度 1.5星
  *
@@ -14,7 +15,8 @@ import suanfa.playWithAlgorithmInterview.linkedlist.MyLinkedList;
 public class Solution206 {
 
     //null 1 2 3 4
-    // prev cur next 每次把cur指给前面,cur切换到下一个
+    // prev cur next 每次把cur指给前面的prev,prev移到cur，cur切换到下一个，
+    // 最后cur移到了末尾的空上，prev移动到了最后，既返回prev
     public MyLinkedList solution(MyLinkedList root) {
         MyLinkedList prev = null;
         MyLinkedList cur = root;

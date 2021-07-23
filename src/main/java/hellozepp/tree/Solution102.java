@@ -1,6 +1,6 @@
 package hellozepp.tree;
 
-import hellozepp.TreeNode;
+import suanfa.playWithAlgorithmsData.tree.TreeNode;
 
 import java.util.*;
 
@@ -25,6 +25,40 @@ import java.util.*;
  * 难度1星
  */
 public class Solution102 {
+
+    public class LevelTreeNode {
+        int level;
+        TreeNode node;
+
+        LevelTreeNode(TreeNode node, int level) {
+            this.node = node;
+            this.level = level;
+        }
+    }
+
+    public List<List<Integer>> levelOrder3(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Queue<LevelTreeNode> que = new LinkedList<>();
+        que.offer(new LevelTreeNode(root, 0));
+        while (!que.isEmpty()) {
+            LevelTreeNode cur = que.poll();
+            if (cur.level == res.size()) {
+                res.add(new ArrayList<>());
+            }
+            res.get(cur.level).add(cur.node.val);
+            if (cur.node.left != null) {
+                que.offer(new LevelTreeNode(cur.node.left, cur.level + 1));
+            }
+            if (cur.node.right != null) {
+                que.offer(new LevelTreeNode(cur.node.right, cur.level + 1));
+            }
+        }
+        return res;
+    }
+
     /**
      *  非递归版本层序遍历，即 bfs
      * @param root
